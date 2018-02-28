@@ -1,0 +1,23 @@
+package br.pro.hashi.ensino.desagil.tequilada;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+
+public class Main {
+
+	public static void main(String[] args) {
+		//System.out.println("Projeto1");
+
+		try{
+			FileReader file = new FileReader("C:\Users\Dell\Desktop\Insper\2018.1\Desenvolvimento Colaborativo Agil\Projeto 1\Projeto1-DesAgil\labirinto.txt");
+			BufferedReader readFile = new BufferedReader(file);
+			String text = readFile.readLine();
+			
+		} catch (IOException e){
+			System.out.printf("Erro abrindo o arquivo", e.getMessage());
+		}
+		
+		
+	}
+
+}
