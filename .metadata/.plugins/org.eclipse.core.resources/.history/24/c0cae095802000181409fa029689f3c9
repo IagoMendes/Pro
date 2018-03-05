@@ -1,0 +1,16 @@
+package br.pro.hashi.ensino.desagil.tequilada;
+
+public class Player {
+	private int row;
+	private int col;
+	
+	 public Player(int initialRow, int initialCol) {
+		    row = initialRow;
+		    col = initialCol;
+		  }
+	 
+	public void move(int rowShift, int colShift) {
+	    row += rowShift;
+	    col += colShift;
+	  }
+}

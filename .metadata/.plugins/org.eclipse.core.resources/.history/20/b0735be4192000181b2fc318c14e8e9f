@@ -1,0 +1,10 @@
+package br.pro.hashi.ensino.desagil.tequilada;
+
+public class Tequilada {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
