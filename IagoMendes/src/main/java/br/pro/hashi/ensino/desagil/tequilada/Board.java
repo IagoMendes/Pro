@@ -6,54 +6,78 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Board {
-	boolean[][] isWall;
+	private boolean[][] isWall;
+	private int numRows;
+	private int numCols;
 
-	void loadFromFile(String path) {
-		
-		//When using try and catch, the code tries to run "try", if it fails, uses "catch" to treat error
+
+	public boolean isWall(int row, int col) {
+		return isWall[row][col];
+	}
+	
+	public Board(String path) {
+		// A instrução "try" delimita um trecho no qual erros
+		// graves, que devem ser tratados, podem acontecer.
 		try {
-			//Builds object to make FileReader able to read lines
+			// Objetos da classe FileReader não possuem o método
+			// readLine, então construímos um objeto da classe
+			// BufferedReader "em volta" para dar essa capacidade.
 			BufferedReader reader = new BufferedReader(new FileReader(path));
 
-			//Returns file's first line 
+			// Lê a primeira linha do arquivo e devolve como String.
 			String line = reader.readLine();
 
-			//Breaks line in blank space and returns two strings, both with numbers	
+			// Usando espaços em branco como o critério de separação,
+			// quebra a string em pedaços e devolve um vetor de strings.
 			String[] words = line.split(" ");
 
-			//Each string is converted to a int number
-			int numRows = Integer.parseInt(words[0]);
-			int numCols = Integer.parseInt(words[1]);
+			// Converte cada um dos dois pedaços em um inteiro.
+			numRows = Integer.parseInt(words[0]);
+			numCols = Integer.parseInt(words[1]);
 
-			//Uses numbers to build the array "isWall" 
+			// Constrói uma matriz, de acordo com o número de colunas
+			// e número de linhas lidos do arquivo, e atribui a isWall.
 			isWall = new boolean[numRows][numCols];
 
-			//Reads each line in the file (except for the first one, already read)
+			// Para cada uma das linhas restantes do arquivo...
 			for(int i = 0; i < numRows; i++) {
 				line = reader.readLine();
 
-				//Reads each character in each line
+				// Para cada um dos caracteres da linha...
 				for(int j = 0; j < numCols; j++) {
 					boolean value;
-					
+
 					if(line.charAt(j) == '#') {
 						value = true;
 					}
 					else {
 						value = false;
 					}
+
 					isWall[i][j] = value;
 				}
 			}
-			//Closes reader
+
+			// Fecha o reader, pois seu uso terminou.
 			reader.close();
 		}
-		//Catches bellow treat each error in its way
+
+		// Trata o erro FileNotFoundException, se ele acontecer.
 		catch(FileNotFoundException exception) {
 			System.out.println(exception);
 		}
+
+		// Trata o erro IOException, se ele acontecer.
 		catch(IOException exception) {
 			System.out.println(exception);
 		}
+	}
+
+
+	public int getNumRows() {
+		return numRows;
+	}
+	public int getNumCols() {
+		return numCols;
 	}
 }
